@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://10.10.14.89:3030/target/target-script-min.js#anonymous"></script>
+    <meta charset="UTF-8">
+    <title>&lt;hello-world&gt;</title>
+
+    <!-- Importing Web Component's Polyfill -->
+    <script src="./node_modules/webcomponents.js/webcomponents-lite.js"></script>
+    <!-- other imports -->
+    <script src="./wc-parts/WeakMap.js"></script>
+    <script src="./wc-parts/Template.js"></script>
+    <script src="./wc-parts/MutationObserver.js"></script>
+    <!-- Importing templating polyfill -->
+    <!--<script src="./templates.js"></script> -->
+    <!-- Importing Custom Elements -->
+    <link rel="import" href="imports/tal-label.html">
+</head>
+<body>
+
+    <!-- Using Custom Elements -->
+    <tal-label who="Unicorn"></tal-label>
+    <script>
+       window.addEventListener('WebComponentsReady', function(e) {
+        // imports are loaded and elements have been registered
+        if('registerElement' in document){
+            document.body.innerHTML += "<p>Supports custom elements</p>";
+        }
+        else {
+            document.body.innerHTML += "<p>Doesn't custom elements</p>";
+        }
+        var el = document.createElement('link');
+        document.body.appendChild(el);
+        if('import' in document.querySelector('link[rel="import"]')){
+            document.body.innerHTML += "<p>Supports HTMLImports</p>";
+        }
+        else{
+            document.body.innerHTML += "<p>Doesn't Support HTMLImports</p>";
+        }
+        /*
+        var tmp = document.createElement('template');
+        document.body.appendChild(tmp);
+        if('content' in document.querySelector('template')){
+             document.body.innerHTML += "<p>Supports templates</p>";
+        }
+        else{
+             document.body.innerHTML += "<p>no template support</p>";
+        }*/
+      },false);
+    </script>
+</body>
+</html>
